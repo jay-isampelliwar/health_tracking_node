@@ -30,41 +30,9 @@ const userDataModel = new Schema({
     required: true,
   },
   date: {
-    type: Date,
+    // ! Date
+    type: String,
     required: true,
-  },
-
-  achievements: {
-    highest_point: {
-      type: Number,
-    },
-    highest_point_date: {
-      type: Date,
-    },
-    highest_distance: {
-      type: Number,
-    },
-    highest_distance_date: {
-      type: Date,
-    },
-    highest_water: {
-      type: Number,
-    },
-    highest_water_date: {
-      type: Date,
-    },
-    highest_step_count: {
-      type: Number,
-    },
-    highest_step_count_date: {
-      type: Date,
-    },
-    highest_calorie_burned: {
-      type: Number,
-    },
-    highest_calorie_burned_date: {
-      type: Date,
-    },
   },
 });
 
