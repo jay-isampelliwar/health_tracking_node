@@ -22,3 +22,5 @@ const tokenValidator = asyncHandler(async (req, res, next) => {
     throw new Error("Unauthorize User OR Token not provided");
   }
 });
+
+module.exports = tokenValidator;
