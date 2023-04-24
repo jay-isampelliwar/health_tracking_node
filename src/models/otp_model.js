@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const userAchievementModel = new Schema({
+const otpModel = new Schema({
   otp: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ const userAchievementModel = new Schema({
   },
 });
 
-module.exports = model("Achievement", userAchievementModel);
+module.exports = model("OTP", otpModel);
