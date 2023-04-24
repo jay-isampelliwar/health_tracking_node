@@ -6,7 +6,7 @@ const userDataModel = new Schema({
     ref: "User",
     required: true,
   },
-  stepCount: {
+  step_count: {
     type: Number,
   },
   calories_burned: {
