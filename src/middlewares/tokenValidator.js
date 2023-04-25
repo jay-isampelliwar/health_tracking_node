@@ -18,7 +18,7 @@ const tokenValidator = asyncHandler(async (req, res, next) => {
       }
     });
   } else {
-    res.status();
+    res.status(404);
     throw new Error("Unauthorize User OR Token not provided");
   }
 });
