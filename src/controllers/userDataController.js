@@ -4,7 +4,7 @@ const Achievement = require("./../models/userAchievementModel");
 
 const getData = asyncHandler(async (req, res) => {
   const data = await UserData.find({ user_id: req.user.id });
-  if (data) {
+  if (!data) {
     res.status(404);
     throw new Error("Zero Data");
   }
@@ -14,7 +14,7 @@ const getData = asyncHandler(async (req, res) => {
 const getAchievement = asyncHandler(async (req, res) => {
   const achievements = await Achievement.find({ user_id: req.user.id });
 
-  if (achievements) {
+  if (!achievements) {
     res.status(404);
     throw new Error("Zero Achievement");
   }
@@ -22,6 +22,7 @@ const getAchievement = asyncHandler(async (req, res) => {
   return res.json({ status: true, message: "Achievement", data: achievements });
 });
 const postData = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const {
     step_count,
     calories_burned,
@@ -52,6 +53,8 @@ const postData = asyncHandler(async (req, res) => {
   });
 });
 const postAchievement = asyncHandler(async (req, res) => {
+  console.log("hello");
+  console.log(req.body);
   const {
     highest_point,
     highest_distance,
@@ -61,6 +64,25 @@ const postAchievement = asyncHandler(async (req, res) => {
   } = req.body;
 
   const achievement = await Achievement.findOne({ user_id: req.user.id });
+
+  if (!achievement) {
+    const newAchievement = new Achievement({
+      user_id: req.user.id,
+      highest_point,
+      highest_water,
+      highest_step_count,
+      highest_distance,
+      highest_calorie_burned,
+    });
+
+    await newAchievement.save();
+
+    return res.json({
+      status: true,
+      message: "Achievement Created",
+      data: newAchievement,
+    });
+  }
 
   if (highest_point.value < achievement.highest_point.value) {
     achievement.highest_point.value = highest_point.value;

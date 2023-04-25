@@ -73,6 +73,7 @@ const userLogin = asyncHandler(async (req, res) => {
     throw new Error("Wrong Email or Password");
   }
 });
+
 const userDetails = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email: req.user.email });
   if (!user) {
