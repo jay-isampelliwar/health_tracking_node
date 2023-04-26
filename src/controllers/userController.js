@@ -38,7 +38,7 @@ const userRegistration = asyncHandler(async (req, res) => {
   return res.json({
     status: true,
     message: "We have sent an OTP on your registered email.",
-    data: [],
+    data: {},
   });
 });
 const userLogin = asyncHandler(async (req, res) => {
@@ -67,7 +67,7 @@ const userLogin = asyncHandler(async (req, res) => {
     return res.json({
       status: true,
       message: "Token",
-      data: { token },
+      data: token,
     });
   } else {
     res.status(401);
@@ -116,7 +116,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
     return res.json({
       status: true,
       message: "Your OTP Verified, Please Login.",
-      data: { user },
+      data: [],
     });
   } else {
     res.status(400);

@@ -6,35 +6,35 @@ const errorHandler = (err, req, res, next) => {
       res.json({
         status: false,
         message: `Not Found, ${err.message}`,
-        data: null,
+        data: {},
       });
       break;
     case constants.FORBIDDEN:
       res.json({
         status: false,
         message: `Forbidden, ${err.message}`,
-        data: null,
+        data: {},
       });
       break;
     case constants.SERVER_ERROR:
       res.json({
         status: false,
         message: `Internal Server Error, ${err.message}`,
-        data: null,
+        data: {},
       });
       break;
     case constants.UNAUTHORIZED:
       res.json({
         status: false,
         message: `Unauthorized, ${err.message}`,
-        data: null,
+        data: {},
       });
       break;
     case constants.VALIDATION_ERROR:
       res.json({
         status: false,
         message: `Validation Error, ${err.message}`,
-        data: null,
+        data: {},
       });
       break;
     default:
