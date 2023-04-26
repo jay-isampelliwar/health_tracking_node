@@ -38,6 +38,7 @@ const userRegistration = asyncHandler(async (req, res) => {
   return res.json({
     status: true,
     message: "We have sent an OTP on your registered email.",
+    data: [],
   });
 });
 const userLogin = asyncHandler(async (req, res) => {
@@ -66,7 +67,7 @@ const userLogin = asyncHandler(async (req, res) => {
     return res.json({
       status: true,
       message: "Token",
-      token: token,
+      data: { token },
     });
   } else {
     res.status(401);
@@ -77,11 +78,8 @@ const userLogin = asyncHandler(async (req, res) => {
 const userDetails = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email: req.user.email });
   if (!user) {
-    return res.status(404).json({
-      status: false,
-      message: "use not found.",
-      data: null,
-    });
+    res.status(404);
+    throw new Error("User not Found");
   }
   return res.json({
     status: true,
@@ -94,6 +92,7 @@ const userDetails = asyncHandler(async (req, res) => {
     },
   });
 });
+
 const verifyOTP = asyncHandler(async (req, res) => {
   const { otp, email } = req.body;
   const otpModel = await OTP.findOne({ email: email });
@@ -117,6 +116,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
     return res.json({
       status: true,
       message: "Your OTP Verified, Please Login.",
+      data: { user },
     });
   } else {
     res.status(400);

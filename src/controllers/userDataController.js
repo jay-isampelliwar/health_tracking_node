@@ -22,7 +22,6 @@ const getAchievement = asyncHandler(async (req, res) => {
   return res.json({ status: true, message: "Achievement", data: achievements });
 });
 const postData = asyncHandler(async (req, res) => {
-  console.log(req.body);
   const {
     step_count,
     calories_burned,
@@ -53,8 +52,6 @@ const postData = asyncHandler(async (req, res) => {
   });
 });
 const postAchievement = asyncHandler(async (req, res) => {
-  console.log("hello");
-  console.log(req.body);
   const {
     highest_point,
     highest_distance,
