@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 
 const userRegistration = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-
   const user = await User.findOne({ email });
 
   if (user) {
@@ -47,7 +46,6 @@ const userRegistration = asyncHandler(async (req, res) => {
 });
 const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -91,7 +89,6 @@ const userDetails = asyncHandler(async (req, res) => {
     data: {
       //! Photo
       name: user.name,
-      phone: user.phone,
       email: user.email,
     },
   });
@@ -100,7 +97,6 @@ const userDetails = asyncHandler(async (req, res) => {
 const verifyOTP = asyncHandler(async (req, res) => {
   const { otp, email } = req.body;
   const otpModel = await OTP.findOne({ email: email });
-
   if (!otpModel) {
     res.status(404);
     throw new Error("Email not found");
