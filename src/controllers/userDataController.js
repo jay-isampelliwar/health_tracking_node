@@ -3,15 +3,18 @@ const UserData = require("./../models/dataModel");
 const Achievement = require("./../models/userAchievementModel");
 
 const getData = asyncHandler(async (req, res) => {
+  console.log(req.user.id);
+
   const data = await UserData.find({ user_id: req.user.id });
   if (!data) {
     res.status(404);
     throw new Error("Zero Data");
   }
-
-  return res.json({ status: true, message: "Data", data: data });
+  y;
+  return res.json({ status: true, message: "Data", data });
 });
 const getAchievement = asyncHandler(async (req, res) => {
+  console.log(req.user.id);
   const achievements = await Achievement.find({ user_id: req.user.id });
 
   if (!achievements) {

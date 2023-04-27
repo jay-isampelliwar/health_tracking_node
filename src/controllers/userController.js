@@ -67,7 +67,7 @@ const userLogin = asyncHandler(async (req, res) => {
     return res.json({
       status: true,
       message: "Token",
-      data: token,
+      data: { token },
     });
   } else {
     res.status(401);
