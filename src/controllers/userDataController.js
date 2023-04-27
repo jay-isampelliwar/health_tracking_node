@@ -6,20 +6,20 @@ const getData = asyncHandler(async (req, res) => {
   const data = await UserData.find({ user_id: req.user.id });
   if (!data) {
     res.status(404);
-    throw new Error("Zero Data");
+    throw new Error("You don't have data");
   }
 
-  return res.json({ status: true, message: "Data", data: data });
+  return res.json({ status: true, message: "Data", data: {} });
 });
 const getAchievement = asyncHandler(async (req, res) => {
-  const achievements = await Achievement.find({ user_id: req.user.id });
+  const achievements = await Achievement.findOne({ user_id: req.user.id });
 
   if (!achievements) {
     res.status(404);
-    throw new Error("Zero Achievement");
+    throw new Error("You don't have achievement");
   }
 
-  return res.json({ status: true, message: "Achievement", data: achievements });
+  return res.json({ status: true, message: "Achievement", data: {} });
 });
 const postData = asyncHandler(async (req, res) => {
   const {
@@ -81,23 +81,23 @@ const postAchievement = asyncHandler(async (req, res) => {
     });
   }
 
-  if (highest_point.value < achievement.highest_point.value) {
+  if (highest_point.value > achievement.highest_point.value) {
     achievement.highest_point.value = highest_point.value;
     achievement.highest_point.date = highest_point.date;
   }
-  if (highest_distance.value < achievement.highest_distance.value) {
+  if (highest_distance.value > achievement.highest_distance.value) {
     achievement.highest_distance.value = highest_distance.value;
     achievement.highest_distance.date = highest_distance.date;
   }
-  if (highest_calorie_burned.value < achievement.highest_calorie_burned.value) {
+  if (highest_calorie_burned.value > achievement.highest_calorie_burned.value) {
     achievement.highest_calorie_burned.value = highest_calorie_burned.value;
     achievement.highest_calorie_burned.date = highest_calorie_burned.date;
   }
-  if (highest_water.value < achievement.highest_water.value) {
+  if (highest_water.value > achievement.highest_water.value) {
     achievement.highest_water.value = highest_water.value;
     achievement.highest_water.date = highest_water.date;
   }
-  if (highest_step_count.value < achievement.highest_step_count.value) {
+  if (highest_step_count.value > achievement.highest_step_count.value) {
     achievement.highest_step_count.value = highest_step_count.value;
     achievement.highest_step_count.date = highest_step_count.date;
   }
