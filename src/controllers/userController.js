@@ -32,6 +32,10 @@ const userRegistration = asyncHandler(async (req, res) => {
     newUser,
   });
 
+  const check = await OTP.findOne({ email: email });
+  if (check) {
+    await OTP.deleteOne({ email: email });
+  }
   await newOTP.save();
   await otpSender.otpSender(email, otp);
 
