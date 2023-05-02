@@ -17,10 +17,6 @@ const userDataModel = new Schema({
     type: Number,
     required: true,
   },
-  heart_rate: {
-    type: Number,
-    required: true,
-  },
   water: {
     type: Number,
     required: true,

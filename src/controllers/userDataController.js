@@ -25,15 +25,8 @@ const getAchievement = asyncHandler(async (req, res) => {
   return res.json({ status: true, message: "Achievement", data: achievements });
 });
 const postData = asyncHandler(async (req, res) => {
-  const {
-    step_count,
-    calories_burned,
-    walk_distance,
-    heart_rate,
-    water,
-    points,
-    date,
-  } = req.body;
+  const { step_count, calories_burned, walk_distance, water, points, date } =
+    req.body;
 
   const newData = new UserData({
     user_id: req.user.id,
@@ -43,7 +36,6 @@ const postData = asyncHandler(async (req, res) => {
     water,
     points,
     date,
-    heart_rate,
   });
 
   await newData.save();
