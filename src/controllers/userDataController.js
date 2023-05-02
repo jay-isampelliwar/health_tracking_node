@@ -17,7 +17,7 @@ const getAchievement = asyncHandler(async (req, res) => {
   if (!achievements) {
     return res.json({
       status: false,
-      message: "Achievement",
+      message: "You don't have amy achievement yet",
       data: achievements,
     });
   }
