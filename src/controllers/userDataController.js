@@ -9,7 +9,7 @@ const getData = asyncHandler(async (req, res) => {
     throw new Error("You don't have data");
   }
 
-  return res.json({ status: true, message: "Data", data: {} });
+  return res.json({ status: true, message: "Data", data: data });
 });
 const getAchievement = asyncHandler(async (req, res) => {
   const achievements = await Achievement.findOne({ user_id: req.user.id });
@@ -19,7 +19,7 @@ const getAchievement = asyncHandler(async (req, res) => {
     throw new Error("You don't have achievement");
   }
 
-  return res.json({ status: true, message: "Achievement", data: {} });
+  return res.json({ status: true, message: "Achievement", data: achievements });
 });
 const postData = asyncHandler(async (req, res) => {
   const {
