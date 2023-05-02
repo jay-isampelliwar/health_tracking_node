@@ -27,6 +27,41 @@ const getAchievement = asyncHandler(async (req, res) => {
 const postData = asyncHandler(async (req, res) => {
   const { step_count, calories_burned, walk_distance, water, points, date } =
     req.body;
+  const data = await UserData.find({ user_id: req.user.id });
+
+  if (data) {
+    const lastUpdatedDate = data[data.length - 1].date.split(" ")[0];
+    if (date.split(" ")[0] === lastUpdatedDate) {
+      data[data.length - 1].date = date;
+      data[data.length - 1].step_count =
+        data[data.length - 1].step_count < step_count
+          ? step_count
+          : data[data.length - 1].step_count;
+      data[data.length - 1].calories_burned =
+        data[data.length - 1].calories_burned < calories_burned
+          ? calories_burned
+          : data[data.length - 1].calories_burned;
+      data[data.length - 1].walk_distance =
+        data[data.length - 1].walk_distance < walk_distance
+          ? walk_distance
+          : data[data.length - 1].walk_distance;
+      data[data.length - 1].water =
+        data[data.length - 1].water < water
+          ? water
+          : data[data.length - 1].water;
+      data[data.length - 1].points =
+        data[data.length - 1].points < points
+          ? points
+          : data[data.length - 1].points;
+
+      await data[data.length - 1].save();
+      return res.json({
+        status: true,
+        message: "Data is Updated",
+        data: { step_count: 1, water: 3 },
+      });
+    }
+  }
 
   const newData = new UserData({
     user_id: req.user.id,
@@ -42,7 +77,7 @@ const postData = asyncHandler(async (req, res) => {
 
   return res.json({
     status: true,
-    message: "Data is uploaded",
+    message: "Today date is created",
     data: newData,
   });
 });
