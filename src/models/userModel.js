@@ -15,9 +15,6 @@ const userModel = new Schema({
     required: true,
   },
 
-  image: {
-    type: String,
-  },
 });
 
 module.exports = model("User", userModel);
