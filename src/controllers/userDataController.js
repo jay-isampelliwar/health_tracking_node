@@ -15,8 +15,11 @@ const getAchievement = asyncHandler(async (req, res) => {
   const achievements = await Achievement.findOne({ user_id: req.user.id });
 
   if (!achievements) {
-    res.status(404);
-    throw new Error("You don't have achievement");
+    return res.json({
+      status: false,
+      message: "Achievement",
+      data: achievements,
+    });
   }
 
   return res.json({ status: true, message: "Achievement", data: achievements });
