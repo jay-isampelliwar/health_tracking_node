@@ -64,8 +64,7 @@ const userLogin = asyncHandler(async (req, res) => {
           id: user.id,
         },
       },
-      process.env.TOKEN_KEY,
-      { expiresIn: "1D" }
+      process.env.TOKEN_KEY
     );
 
     return res.json({
