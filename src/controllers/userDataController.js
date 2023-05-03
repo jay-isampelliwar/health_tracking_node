@@ -103,7 +103,7 @@ const postAchievement = asyncHandler(async (req, res) => {
     });
 
     await newAchievement.save();
-
+    console.log(newAchievement);
     return res.json({
       status: true,
       message: "Achievement Created",
