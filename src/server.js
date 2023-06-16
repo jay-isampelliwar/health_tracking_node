@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/user", userRoute);
 app.use("/user/data", userDataRoutes);
-app.use("/user", userChatRoutes);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
