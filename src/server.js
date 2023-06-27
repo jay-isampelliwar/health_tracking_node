@@ -6,7 +6,6 @@ const dbConnect = require("./config/dbConnect");
 const PORT = process.env.PORT || 3000;
 const userRoute = require("./routes/userRoutes");
 const userDataRoutes = require("./routes/userDataRoutes");
-const userChatRoutes = require("./routes/chatBotRouter");
 const app = express();
 dbConnect();
 
